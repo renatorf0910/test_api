@@ -1,10 +1,10 @@
 from flask import Flask
+from flask_cors import CORS
 
 def create_app():
-    print(f'11')
     app = Flask(__name__)
-    print(f'12')
+    CORS(app, origins=["http://localhost:3001"])
     from . import routes
-    app.register_blueprint(routes.bp)
-    print(f'13')
+    app.register_blueprint(routes.bp, url_prefix='/api')
+
     return app
